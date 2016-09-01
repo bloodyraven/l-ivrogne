@@ -2,14 +2,20 @@ package ui;
 
 import java.awt.Graphics;
 
+import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import bean.Game;
 
 public class GamePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	private JFrame f;
+	private Game g;
 	
-	public GamePanel() {
-		
+	public GamePanel(JFrame f, Game g) {
+		this.setF(f);
+		this.setG(g);
 	}
 	
 	 @Override
@@ -45,5 +51,21 @@ public class GamePanel extends JPanel {
          g.drawRect(422, 10, 56, 88);
          g.drawRect(422, 108, 56, 88);
      }
+
+	public JFrame getF() {
+		return f;
+	}
+
+	public void setF(JFrame f) {
+		this.f = f;
+	}
+
+	public Game getG() {
+		return g;
+	}
+
+	public void setG(Game g) {
+		this.g = g;
+	}
 
 }
