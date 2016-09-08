@@ -1,24 +1,20 @@
 package ui;
 
-import java.awt.BorderLayout;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import bean.Game;
 
-public class GamePanel extends JPanel {
+public class PlayerPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JFrame f;
 	private Game g;
 	
-	public GamePanel(JFrame f, Game g) {
+	public PlayerPanel(JFrame f, Game g) {
 		this.setF(f);
 		this.setG(g);
-		this.setLayout(new BorderLayout());
-		this.add(new PlayerPanel(f, g), BorderLayout.WEST);
-		this.add(new PlateauPanel(f), BorderLayout.CENTER);
+		//AJOUTER LES PERSOS AU PANEL
 	}
 
 	public JFrame getF() {
@@ -36,5 +32,4 @@ public class GamePanel extends JPanel {
 	public void setG(Game g) {
 		this.g = g;
 	}
-
 }

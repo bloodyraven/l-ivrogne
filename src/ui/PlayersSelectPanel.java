@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -65,6 +66,15 @@ public class PlayersSelectPanel extends JPanel {
 						}
 					} catch(Exception e) {System.out.println("Error while getting players");}
 				}
+				
+				//IF LESS THAN 2 NAMES
+				if(listPlayers.size() < 2) {
+					JOptionPane.showMessageDialog(f, "Entrez au moins deux noms", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+				
+				//IF TWO PLAYERS HAVE THE SAME NAME ERROR
+				
 				
 				//REDIRECT ON NEXT SCREEN
 				f.setContentPane(new GamePanel(f, new Game(listPlayers)));
