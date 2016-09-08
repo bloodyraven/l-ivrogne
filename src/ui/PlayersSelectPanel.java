@@ -7,6 +7,8 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -56,13 +58,17 @@ public class PlayersSelectPanel extends JPanel {
 		jb.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				//ADD ALL PLAYERS IN GAME OBJECT
+				//ADD ALL PLAYERS IN GAME OBJECT AND AFFECT CLASS
 				ArrayList<Player> listPlayers = new ArrayList<Player>();
+				String tab[] = {"Juif", "Juif", "Reine", "Reine", "Roi", "Roi"};
+				ArrayList<String> listClasse = new ArrayList<String>(Arrays.asList(tab));
+				Collections.shuffle(listClasse);
+				int i=0;
 				for (Component comp : grid.getComponents()) {
 					try{
 						PlayerSelectArea psa = (PlayerSelectArea) comp;
 						if(!psa.getJtf().getText().equals("")) {
-							listPlayers.add(new Player(psa.getJtf().getText()));
+							listPlayers.add(new Player(psa.getJtf().getText(), listClasse.get(i++)));
 						}
 					} catch(Exception e) {System.out.println("Error while getting players");}
 				}

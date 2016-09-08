@@ -1,9 +1,13 @@
 package ui;
 
+import java.util.Iterator;
+
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import bean.Game;
+import bean.Player;
 
 public class PlayerPanel extends JPanel {
 
@@ -14,7 +18,12 @@ public class PlayerPanel extends JPanel {
 	public PlayerPanel(JFrame f, Game g) {
 		this.setF(f);
 		this.setG(g);
+		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		//AJOUTER LES PERSOS AU PANEL
+		Iterator<Player> it = g.getListPlayers().iterator();
+		while(it.hasNext()) {
+			this.add(new PlayerStatsPanel(it.next()));
+		}
 	}
 
 	public JFrame getF() {

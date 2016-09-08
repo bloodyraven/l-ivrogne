@@ -4,6 +4,7 @@ public class Player {
 
 	private String name;
 	private int gorgees;
+	private String classe;
 	
 	/**
 	 * New default player
@@ -12,6 +13,11 @@ public class Player {
 	public Player(String name) {
 		this.setName(name);
 		this.setGorgees(0);
+	}
+	
+	public Player(String name, String classe) {
+		this(name);
+		this.setClasse(classe);
 	}
 
 	public String getName() {
@@ -28,6 +34,14 @@ public class Player {
 
 	public void setGorgees(int gorgees) {
 		this.gorgees = gorgees;
+	}
+
+	public String getClasse() {
+		return classe;
+	}
+
+	public void setClasse(String classe) {
+		this.classe = classe;
 	}
 	
 	

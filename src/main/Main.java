@@ -10,7 +10,7 @@ public class Main {
 		JFrame f = new JFrame("L'ivrogne");
 		f.setContentPane(new PlayersSelectPanel(f));
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setSize(500, 500);
+		f.setSize(570, 510);
 		f.setLocationRelativeTo(null);
 		f.setVisible(true);
 	}
