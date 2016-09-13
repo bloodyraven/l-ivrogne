@@ -12,6 +12,7 @@ public class Carte {
 	
 	public Carte(int valeur) {
 		this.setValeur(valeur);
+		this.discovered=false;
 	}
 	
 	public Carte(int valeur, BufferedImage image) {

@@ -1,6 +1,7 @@
 package bean;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import utils.Constante;
 
@@ -25,6 +26,7 @@ public class Game {
 		listCartes.add(new Carte(11, Constante.cv));
 		listCartes.add(new Carte(12, Constante.cd));
 		listCartes.add(new Carte(13, Constante.cr));
+		Collections.shuffle(listPlayers);
 	}
 
 	public ArrayList<Player> getListPlayers() {

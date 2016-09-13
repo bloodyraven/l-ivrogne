@@ -2,10 +2,13 @@ package ui;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import bean.Carte;
+import bean.Game;
 import listener.ClicListener;
 import utils.Constante;
 
@@ -13,10 +16,12 @@ public class PlateauPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JFrame f;
+	private Game game;
 	
-	public PlateauPanel(JFrame f) {
+	public PlateauPanel(JFrame f, Game g) {
 		this.setF(f);
-		this.addMouseListener(new ClicListener(this));
+		this.setGame(g);
+		this.addMouseListener(new ClicListener(this, g));
 	}
 	
 	 @Override
@@ -24,8 +29,14 @@ public class PlateauPanel extends JPanel {
          super.paintComponent(g);
          g.drawImage(Constante.bg,0,0,null);
          
+         ArrayList<Carte> listCartes = game.getListCartes();
+         
          //horizontal haut
-         g.drawImage(rotate90DX(Constante.c0),Constante.X6,Constante.Y1,null);
+         if(listCartes.get(0).isDiscovered()) {
+        	 g.drawImage(listCartes.get(0).getImageTurned(),Constante.X6,Constante.Y1,null);
+         } else {
+        	 g.drawImage(rotate90DX(Constante.c0),Constante.X6,Constante.Y1,null);
+         }
          g.drawImage(rotate90DX(Constante.c0),Constante.X8,Constante.Y1,null);
          
          //horizontal mid
@@ -66,6 +77,14 @@ public class PlateauPanel extends JPanel {
 
 	public void setF(JFrame f) {
 		this.f = f;
+	}
+
+	public Game getGame() {
+		return game;
+	}
+
+	public void setGame(Game g) {
+		this.game = g;
 	}
 	 
 }
