@@ -50,4 +50,34 @@ public class Constante {
 			
 		} catch (Exception iOException) {System.out.println("Error while getting images");}
 	}
+	
+	public final static int X1 = 157;
+	public final static int X2 = 244;
+	public final static int X3 = 266;
+	public final static int X4 = 397;
+	public final static int X5 = 419;
+	public final static int X6 = 441;
+	public final static int X7 = 572;
+	public final static int X8 = 594;
+	public final static int X9 = 725;
+	
+	public final static int Y1 = 144;
+	public final static int Y9 = 211;
+	public final static int Y2 = 365;
+	public final static int Y3 = 253;
+	public final static int Y4 = 364;
+	public final static int Y5 = 408;
+	public final static int Y6 = 517;
+	public final static int Y7 = 561;
+	public final static int Y8 = 670;
+	
+	public final static int X_GAP = 10;
+	public final static int X_MARGIN_GAUCHE = 157;
+	public final static int X_MARGIN_DROITE = 158;
+	
+	public final static int Y_GAP = 10;
+	public final static int Y_MARGIN_HAUT = 134;
+	public final static int Y_MARGIN_BAS = 135;
+	
+	
 }

@@ -5,6 +5,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JPanel;
 
 import utils.Constante;
+import utils.Utils;
 
 public class ClicListener implements MouseListener {
 	
@@ -16,46 +17,56 @@ public class ClicListener implements MouseListener {
 	}
 	
 	private int getCarteCoord(int x, int y) {
-		if(x>103 && x<202 && y>80 && y<223) {
+		if(x>Constante.X6 && x<Constante.X6+143 && y>Constante.Y1 && y<Constante.Y1+99) {
 			return 1;
 		}
-		if(x>103 && x<202 && y>238 && y<381) {
+		if(x>Constante.X8 && x<Constante.X8+143 && y>Constante.Y1 && y<Constante.Y1+99) {
 			return 2;
 		}
-		if(x>103 && x<246 && y>396 && y<495) {
+		if(x>Constante.X3 && x<Constante.X3+143 && y>Constante.Y5 && y<Constante.Y5+99) {
 			return 3;
 		} 
-		if(x>261 && x<404 && y>396 && y<495) {
+		if(x>Constante.X5 && x<Constante.X5+143 && y>Constante.Y5 && y<Constante.Y5+99) {
 			return 4;
 		}
-		if(x>419 && x<553 && y>396 && y<495) {
+		if(x>Constante.X7 && x<Constante.X7+143 && y>Constante.Y5 && y<Constante.Y5+99) {
 			return 5;
 		}
-		if(x>577 && x<720 && y>396 && y<495) {
+		if(x>Constante.X2 && x<Constante.X2+143 && y>Constante.Y8 && y<Constante.Y8+99) {
 			return 6;
 		}
-		if(x>735 && x<978 && y>396 && y<495) {
+		if(x>Constante.X4 && x<Constante.X4+143 && y>Constante.Y8 && y<Constante.Y8+99) {
 			return 7;
 		}
-		if(x>779 && x<878 && y>510 && y<644) {
+		if(x>Constante.X1 && x<Constante.X1+99 && y>Constante.Y9 && y<Constante.Y9+143) {
 			return 8;
 		}
-		if(x>779 && x<878 && y>668 && y<802) {
+		if(x>Constante.X1 && x<Constante.X1+99 && y>Constante.Y4 && y<Constante.Y4+143) {
 			return 9;
+		}
+		if(x>Constante.X6 && x<Constante.X6+99 && y>Constante.Y3 && y<Constante.Y3+143) {
+			return 10;
+		}
+		if(x>Constante.X6 && x<Constante.X6+99 && y>Constante.Y6 && y<Constante.Y6+143) {
+			return 11;
+		}
+		if(x>Constante.X9 && x<Constante.X9+99 && y>Constante.Y5 && y<Constante.Y5+143) {
+			return 12;
+		}
+		if(x>Constante.X9 && x<Constante.X9+99 && y>Constante.Y7 && y<Constante.Y7+143) {
+			return 13;
 		}
 		return -1;
 	}
 
 	@Override
 	public void mouseClicked(java.awt.event.MouseEvent arg0) {
-		//this.p.getGraphics().setColor(Color.blue);
-		//this.p.getGraphics().fillOval(arg0.getX(), arg0.getY(), 50, 50);
 		switch(getCarteCoord(arg0.getX(), arg0.getY())) {
 			case 1: System.out.println("Clic sur carte 1");
-					this.p.getGraphics().drawImage(Constante.c1,103,80,null);
+					this.p.getGraphics().drawImage(Utils.rotate90DX(Constante.c1),Constante.X6,Constante.Y1,null);
 					break;
 			case 2: System.out.println("Clic sur carte 2");
-					this.p.getGraphics().drawImage(Constante.cr,103,238,null);
+					this.p.getGraphics().drawImage(Utils.rotate90DX(Constante.cr),Constante.X8,Constante.Y1,null);
 					break;
 			case 3: System.out.println("Clic sur carte 3");
 					break;
