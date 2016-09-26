@@ -9,6 +9,7 @@ public class Game {
 
 	private ArrayList<Player> listPlayers;
 	private ArrayList<Carte> listCartes;
+	protected Tour currentTour; // TODO currentTour à init
 	
 	public Game(ArrayList<Player> listPlayers) {
 		this.setListPlayers(listPlayers);
@@ -44,4 +45,13 @@ public class Game {
 	public void setListCartes(ArrayList<Carte> listCartes) {
 		this.listCartes = listCartes;
 	}
+
+	public Tour getCurrentTour() {
+		return currentTour;
+	}
+	
+	public void setCurrentTour(Tour t) {
+		this.currentTour=t;
+	}
+
 }

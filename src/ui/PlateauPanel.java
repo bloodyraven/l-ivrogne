@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import bean.Carte;
-import bean.Game;
 import listener.ClicListener;
 import utils.Constante;
+import bean.Carte;
+import bean.Game;
 
 public class PlateauPanel extends JPanel {
 

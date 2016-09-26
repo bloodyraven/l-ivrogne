@@ -2,6 +2,7 @@ package listener;
 
 import java.awt.event.MouseListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import bean.Game;
@@ -120,30 +121,38 @@ public class ClicListener implements MouseListener {
 					break;
 			default: break;
 		}
+		if(!g.getListCartes().get(gerard).isDiscovered()) {
+			int valCarte = g.getListCartes().get(gerard).getValeur();
+			if(valCarte == g.getCurrentTour().getMontantDes()) {
+				// TODO END TOUR
+				// Reset Plateau
+				// Nouveau tour (index++) if Exception index=0
+			} else if(valCarte == 1) {
+				g.getCurrentTour().setGorgeesAcquises(0);
+			} else if(valCarte == g.getCurrentTour().getP().getNumCarte()) {
+				// TODO EFFET SPECIAL
+			}
+		} else {
+			JOptionPane.showMessageDialog(null, "Carte déjà retournée. +1 gorgée pour avoir essayé de faire planté le programme. Bâtard.", "Error Boloss 404", JOptionPane.ERROR_MESSAGE);
+			g.getCurrentTour().setGorgeesAcquises(g.getCurrentTour().getGorgeesAcquises()+1);
+		}
+		g.getListCartes().get(gerard).setDiscovered(true);
 	}
 
 	@Override
 	public void mouseEntered(java.awt.event.MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void mouseExited(java.awt.event.MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void mousePressed(java.awt.event.MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void mouseReleased(java.awt.event.MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	public JPanel getP() {
