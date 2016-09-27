@@ -21,7 +21,7 @@ public class PlateauPanel extends JPanel {
 	public PlateauPanel(JFrame f, Game g) {
 		this.setF(f);
 		this.setGame(g);
-		this.addMouseListener(new ClicListener(this, g));
+		this.addMouseListener(new ClicListener(f, this, g));
 	}
 	
 	 @Override

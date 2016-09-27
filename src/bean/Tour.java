@@ -9,21 +9,17 @@ public class Tour {
 	private Player p;
 	private int montantDes;
 	private int gorgeesAcquises;
+	private int gorgeesFixes;
 	private int index;
 
-	public Tour(Game g, Player p) {
+	public Tour(Game g, Player p, int index) {
 		this.setG(g);
 		this.setP(p);
+		this.setIndex(index);
 		gorgeesAcquises=0;
-		montantDes = (int) ((Math.random() * 12) + 1);
-		JOptionPane.showMessageDialog(null, p.getName()+", les dés affichent"+montantDes+".", "Lancement de dés", JOptionPane.PLAIN_MESSAGE);
-		
-		//retourne carte
-			//si carte == nombre => fini & distrib gorgées
-			//si carte != nombre => ajout de gorgées
-			// si carte == as => restat gorgées à 0
-		
-		//
+		gorgeesFixes=0;
+		montantDes = (int) ((Math.random() * 12) + 2);
+		JOptionPane.showMessageDialog(null, p.getName()+", les dés affichent "+montantDes+".", "Lancement de dés", JOptionPane.PLAIN_MESSAGE);
 	}
 
 	public Game getG() {
@@ -64,5 +60,13 @@ public class Tour {
 
 	public void setIndex(int index) {
 		this.index = index;
+	}
+
+	public int getGorgeesFixes() {
+		return gorgeesFixes;
+	}
+
+	public void setGorgeesFixes(int gorgeesFixes) {
+		this.gorgeesFixes = gorgeesFixes;
 	}
 }

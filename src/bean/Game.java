@@ -9,10 +9,15 @@ public class Game {
 
 	private ArrayList<Player> listPlayers;
 	private ArrayList<Carte> listCartes;
-	protected Tour currentTour; // TODO currentTour à init
+	protected Tour currentTour;
 	
 	public Game(ArrayList<Player> listPlayers) {
 		this.setListPlayers(listPlayers);
+		initAndShuffle();
+		currentTour=new Tour(this, this.listPlayers.get(0), 0);
+	}
+	
+	private void initAndShuffle() {
 		listCartes = new ArrayList<Carte>();
 		listCartes.add(new Carte(1, Constante.c1));
 		listCartes.add(new Carte(2, Constante.c2));
@@ -27,6 +32,10 @@ public class Game {
 		listCartes.add(new Carte(11, Constante.cv));
 		listCartes.add(new Carte(12, Constante.cd));
 		listCartes.add(new Carte(13, Constante.cr));
+		Collections.shuffle(listPlayers);
+	}
+	
+	public void shuffleCards() {
 		Collections.shuffle(listPlayers);
 	}
 

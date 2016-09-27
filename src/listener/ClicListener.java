@@ -1,21 +1,29 @@
 package listener;
 
+import java.awt.BorderLayout;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import bean.Carte;
 import bean.Game;
+import bean.Tour;
+import ui.PlateauPanel;
 import utils.Constante;
 import utils.Utils;
 
 public class ClicListener implements MouseListener {
 	
+	private JFrame f;
 	private JPanel p;
 	private Game g;
 	
-	public ClicListener(JPanel p, Game g) {
+	public ClicListener(JFrame f, JPanel p, Game g) {
 		super();
+		this.setF(f);
 		this.setP(p);
 		this.setG(g);
 	}
@@ -68,75 +76,87 @@ public class ClicListener implements MouseListener {
 		int gerard = getCarteCoord(arg0.getX(), arg0.getY());
 		switch(gerard) {
 			case 1: System.out.println("Clic sur carte 1");
-					this.g.getListCartes().get(gerard-1).setDiscovered(true);
 					this.p.getGraphics().drawImage(Utils.rotate90DX(g.getListCartes().get(gerard-1).getImage()),Constante.X6,Constante.Y1,null);
 					break;
 			case 2: System.out.println("Clic sur carte 2");
-					this.g.getListCartes().get(gerard-1).setDiscovered(true);
 					this.p.getGraphics().drawImage(Utils.rotate90DX(g.getListCartes().get(gerard-1).getImage()),Constante.X8,Constante.Y1,null);
 					break;
 			case 3: System.out.println("Clic sur carte 3");
-					this.g.getListCartes().get(gerard-1).setDiscovered(true);
 					this.p.getGraphics().drawImage(Utils.rotate90DX(g.getListCartes().get(gerard-1).getImage()),Constante.X3,Constante.Y5,null);
 					break;
 			case 4: System.out.println("Clic sur carte 4");
-					this.g.getListCartes().get(gerard-1).setDiscovered(true);
 					this.p.getGraphics().drawImage(Utils.rotate90DX(g.getListCartes().get(gerard-1).getImage()),Constante.X5,Constante.Y5,null);
 					break;
 			case 5: System.out.println("Clic sur carte 5");
-					this.g.getListCartes().get(gerard-1).setDiscovered(true);
 					this.p.getGraphics().drawImage(Utils.rotate90DX(g.getListCartes().get(gerard-1).getImage()),Constante.X7,Constante.Y5,null);
 					break;
 			case 6: System.out.println("Clic sur carte 6");
-					this.g.getListCartes().get(gerard-1).setDiscovered(true);
 					this.p.getGraphics().drawImage(Utils.rotate90DX(g.getListCartes().get(gerard-1).getImage()),Constante.X2,Constante.Y8,null);
 					break;
 			case 7: System.out.println("Clic sur carte 7");
-					this.g.getListCartes().get(gerard-1).setDiscovered(true);
 					this.p.getGraphics().drawImage(Utils.rotate90DX(g.getListCartes().get(gerard-1).getImage()),Constante.X4,Constante.Y8,null);
 					break;
 			case 8: System.out.println("Clic sur carte 8");
-					this.g.getListCartes().get(gerard-1).setDiscovered(true);
 					this.p.getGraphics().drawImage(g.getListCartes().get(gerard-1).getImage(),Constante.X1,Constante.Y9,null);
 					break;
 			case 9: System.out.println("Clic sur carte 9");
-					this.g.getListCartes().get(gerard-1).setDiscovered(true);
 					this.p.getGraphics().drawImage(g.getListCartes().get(gerard-1).getImage(),Constante.X1,Constante.Y4,null);
 					break;
 			case 10: System.out.println("Clic sur carte 10");
-					this.g.getListCartes().get(gerard-1).setDiscovered(true);
 					this.p.getGraphics().drawImage(g.getListCartes().get(gerard-1).getImage(),Constante.X6,Constante.Y3,null);
 					break;
 			case 11: System.out.println("Clic sur carte 11");
-					this.g.getListCartes().get(gerard-1).setDiscovered(true);
 					this.p.getGraphics().drawImage(g.getListCartes().get(gerard-1).getImage(),Constante.X6,Constante.Y6,null);
 					break;
 			case 12: System.out.println("Clic sur carte 12");
-					this.g.getListCartes().get(gerard-1).setDiscovered(true);
 					this.p.getGraphics().drawImage(g.getListCartes().get(gerard-1).getImage(),Constante.X9,Constante.Y5,null);
 					break;
 			case 13: System.out.println("Clic sur carte 13");
-					this.g.getListCartes().get(gerard-1).setDiscovered(true);
 					this.p.getGraphics().drawImage(g.getListCartes().get(gerard-1).getImage(),Constante.X9,Constante.Y7,null);
 					break;
 			default: break;
 		}
-		if(!g.getListCartes().get(gerard).isDiscovered()) {
-			int valCarte = g.getListCartes().get(gerard).getValeur();
-			if(valCarte == g.getCurrentTour().getMontantDes()) {
-				// TODO END TOUR
-				// Reset Plateau
-				// Nouveau tour (index++) if Exception index=0
-			} else if(valCarte == 1) {
-				g.getCurrentTour().setGorgeesAcquises(0);
-			} else if(valCarte == g.getCurrentTour().getP().getNumCarte()) {
-				// TODO EFFET SPECIAL
+		try {
+			ArrayList<Carte> listCarte = g.getListCartes();
+			Tour currentTour = g.getCurrentTour();
+			if(!listCarte.get(gerard-1).isDiscovered()) {
+				int valCarte = listCarte.get(gerard-1).getValeur();
+				if(valCarte == currentTour.getMontantDes()) {
+					// TODO END TOUR
+						// Distribution des gorgées nbGorgées/2 if(nbGorgées%2 == 1) +1
+						// TODO Reset Panel - NW
+						f.getContentPane().add(new PlateauPanel(f, g), BorderLayout.CENTER);
+						f.revalidate();
+						// Nouveau tour
+						int nextIndex = currentTour.getIndex()+1;
+						if(nextIndex <= g.getListPlayers().size()) {
+							g.setCurrentTour(new Tour(g, g.getListPlayers().get(nextIndex), nextIndex));
+							g.shuffleCards();
+						} else {
+							// TODO demander si on refait un tour de table, redistribution de rôles
+							System.out.println("encore un tour ?");
+						}
+				} else if(valCarte == 1) {
+					// TODO Distribue les gorgées acquises
+					currentTour.setGorgeesAcquises(0);
+				} else if(valCarte == currentTour.getP().getNumCarte()) {
+					if(valCarte == 11) {
+						//TODO Action juif
+					}
+					if (valCarte == 12) {
+						//TODO Action reine
+					}
+					if (valCarte == 13) {
+						//TODO Action roi
+					}
+				}
+			} else {
+				JOptionPane.showMessageDialog(null, "Carte déjà retournée. +1 gorgée pour avoir essayé de faire planter le programme. Bâtard.", "Error Boloss 404", JOptionPane.ERROR_MESSAGE);
+				currentTour.setGorgeesFixes(currentTour.getGorgeesFixes()+1);
 			}
-		} else {
-			JOptionPane.showMessageDialog(null, "Carte déjà retournée. +1 gorgée pour avoir essayé de faire planté le programme. Bâtard.", "Error Boloss 404", JOptionPane.ERROR_MESSAGE);
-			g.getCurrentTour().setGorgeesAcquises(g.getCurrentTour().getGorgeesAcquises()+1);
-		}
-		g.getListCartes().get(gerard).setDiscovered(true);
+			listCarte.get(gerard-1).setDiscovered(true);
+		} catch (Exception e) { }
+		
 	}
 
 	@Override
@@ -169,6 +189,14 @@ public class ClicListener implements MouseListener {
 
 	public void setG(Game g) {
 		this.g = g;
+	}
+
+	public JFrame getF() {
+		return f;
+	}
+
+	public void setF(JFrame f) {
+		this.f = f;
 	}
 
 }

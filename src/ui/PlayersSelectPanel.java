@@ -79,7 +79,7 @@ public class PlayersSelectPanel extends JPanel {
 					return;
 				}
 				
-				//IF TWO PLAYERS HAVE THE SAME NAME ERROR
+				// TODO IF TWO PLAYERS HAVE THE SAME NAME ERROR
 				
 				
 				//REDIRECT ON NEXT SCREEN
