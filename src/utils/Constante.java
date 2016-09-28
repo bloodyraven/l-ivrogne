@@ -27,8 +27,9 @@ public class Constante {
 	
 	public final static String PATH_IM_CARDSHEET = "resources/img/sheetcard.png";
 	public final static String PATH_IM_BACKGROUND = "resources/img/tapis.png";
+	public final static String PATH_IM_COURONNE = "resources/img/couronne.jpg";
 	
-	public static BufferedImage bg, c0, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, cv, cd ,cr;
+	public static BufferedImage bg, c0, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, cv, cd ,cr, couronne;
 	
 	static {
 		try {
@@ -47,6 +48,7 @@ public class Constante {
 	        cv = ImageIO.read(new File(PATH_IM_CARDSHEET)).getSubimage(IM_V, 0, CARD_WIDTH, CARD_HEIGHT);
 	        cd = ImageIO.read(new File(PATH_IM_CARDSHEET)).getSubimage(IM_D, 0, CARD_WIDTH, CARD_HEIGHT);
 	        cr = ImageIO.read(new File(PATH_IM_CARDSHEET)).getSubimage(IM_R, 0, CARD_WIDTH, CARD_HEIGHT);
+	        couronne = ImageIO.read(new File(PATH_IM_COURONNE));
 			
 		} catch (Exception iOException) {System.out.println("Error while getting images");}
 	}
