@@ -2,14 +2,11 @@ package ui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.image.BufferedImage;
 
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import utils.Constante;
 import bean.Player;
 
 public class PlayerStatsPanel extends JPanel {
@@ -22,14 +19,15 @@ public class PlayerStatsPanel extends JPanel {
 		JLabel jl1 = new JLabel(p.getName());
 		JLabel jl2 = new JLabel(p.getClasse());
 		JLabel jl3 = new JLabel(""+p.getGorgees());
-		BufferedImage bfim = utils.Utils.resize(Constante.couronne, 70, 70);
-		JLabel jl4 = new JLabel(new ImageIcon(bfim));
+		// TODO Afficher les données en temps réel + image + nb à trouver
+/*		BufferedImage bfim = utils.Utils.resize(Constante.couronne, 70, 70);
+		JLabel jl4 = new JLabel(new ImageIcon(bfim));*/
 		JPanel jp = new  JPanel();
 		jp.setLayout(new BoxLayout(jp, BoxLayout.Y_AXIS));
 		jp.add(jl1);
 		jp.add(jl2);
 		jp.add(jl3);
-		this.add(jl4, BorderLayout.WEST);
+//		this.add(jl4, BorderLayout.WEST);
 		this.add(jp, BorderLayout.CENTER);
 	}
 

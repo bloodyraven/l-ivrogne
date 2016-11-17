@@ -21,6 +21,10 @@ public class Tour {
 		montantDes = (int) ((Math.random() * 12) + 2);
 		JOptionPane.showMessageDialog(null, p.getName()+", les dés affichent "+montantDes+".", "Lancement de dés", JOptionPane.PLAIN_MESSAGE);
 	}
+	
+	public void ajoutGorgeeAquise(int a) {
+		gorgeesAcquises+=a;
+	}
 
 	public Game getG() {
 		return g;

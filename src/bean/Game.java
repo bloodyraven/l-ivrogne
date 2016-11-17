@@ -17,7 +17,7 @@ public class Game {
 		currentTour=new Tour(this, this.listPlayers.get(0), 0);
 	}
 	
-	private void initAndShuffle() {
+	public void initAndShuffle() {
 		listCartes = new ArrayList<Carte>();
 		listCartes.add(new Carte(1, Constante.c1));
 		listCartes.add(new Carte(2, Constante.c2));
@@ -32,11 +32,25 @@ public class Game {
 		listCartes.add(new Carte(11, Constante.cv));
 		listCartes.add(new Carte(12, Constante.cd));
 		listCartes.add(new Carte(13, Constante.cr));
-		Collections.shuffle(listPlayers);
+		Collections.shuffle(listCartes);
 	}
 	
 	public void shuffleCards() {
-		Collections.shuffle(listPlayers);
+		Collections.shuffle(listCartes);
+	}
+	
+	public void resetDiscovered() {
+		for (Carte carte : listCartes) {
+			carte.setDiscovered(false);
+		}
+	}
+	
+	public boolean allDiscovered() {
+		for (Carte carte : listCartes) {
+			if(!carte.isDiscovered())
+				return false;
+		}
+		return true;
 	}
 
 	public ArrayList<Player> getListPlayers() {

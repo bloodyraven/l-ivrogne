@@ -28,6 +28,10 @@ public class Player {
 		}
 	}
 
+	public void addGorgee(int a) {
+		this.gorgees+=a;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -59,6 +63,5 @@ public class Player {
 	public void setNumCarte(int numCarte) {
 		this.numCarte = numCarte;
 	}
-	
 	
 }

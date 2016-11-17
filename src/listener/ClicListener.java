@@ -1,6 +1,5 @@
 package listener;
 
-import java.awt.BorderLayout;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
@@ -8,12 +7,11 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import utils.Constante;
+import utils.Utils;
 import bean.Carte;
 import bean.Game;
 import bean.Tour;
-import ui.PlateauPanel;
-import utils.Constante;
-import utils.Utils;
 
 public class ClicListener implements MouseListener {
 	
@@ -119,26 +117,37 @@ public class ClicListener implements MouseListener {
 		try {
 			ArrayList<Carte> listCarte = g.getListCartes();
 			Tour currentTour = g.getCurrentTour();
+			System.out.println(listCarte.get(gerard-1).getValeur()+" "+listCarte.get(gerard-1).isDiscovered());
 			if(!listCarte.get(gerard-1).isDiscovered()) {
 				int valCarte = listCarte.get(gerard-1).getValeur();
 				if(valCarte == currentTour.getMontantDes()) {
-					// TODO END TOUR
-						// Distribution des gorgées nbGorgées/2 if(nbGorgées%2 == 1) +1
-						// TODO Reset Panel - NW
-						f.getContentPane().add(new PlateauPanel(f, g), BorderLayout.CENTER);
-						f.revalidate();
-						// Nouveau tour
-						int nextIndex = currentTour.getIndex()+1;
-						if(nextIndex <= g.getListPlayers().size()) {
-							g.setCurrentTour(new Tour(g, g.getListPlayers().get(nextIndex), nextIndex));
-							g.shuffleCards();
+					// Distribution des gorgées
+					int gorgees = g.getCurrentTour().getGorgeesAcquises()/2;
+					if(g.getCurrentTour().getGorgeesAcquises()%2 == 1)
+						gorgees++;
+					gorgees+=g.getCurrentTour().getGorgeesFixes();
+					g.getCurrentTour().getP().addGorgee(gorgees);
+					System.out.println("gorgees="+gorgees);
+					// Reset Panel
+					g.shuffleCards();
+					g.resetDiscovered();
+					f.repaint();
+					f.revalidate();
+						
+					// Nouveau tour
+					int nextIndex = currentTour.getIndex()+1;
+					System.out.println(nextIndex+" "+g.getListPlayers().size());
+					if(nextIndex < g.getListPlayers().size()) {
+						g.setCurrentTour(new Tour(g, g.getListPlayers().get(nextIndex), nextIndex));
+					} else {
+						System.out.println("encore un tour ?");
+						int retour = JOptionPane.showConfirmDialog(null, "Rejouer ?", "Rejouer ?", JOptionPane.YES_NO_OPTION);
+						if(retour == 0) {
+							// TODO nouvelle partie
 						} else {
-							// TODO demander si on refait un tour de table, redistribution de rôles
-							System.out.println("encore un tour ?");
+							System.exit(0);
 						}
-				} else if(valCarte == 1) {
-					// TODO Distribue les gorgées acquises
-					currentTour.setGorgeesAcquises(0);
+					}
 				} else if(valCarte == currentTour.getP().getNumCarte()) {
 					if(valCarte == 11) {
 						//TODO Action juif
@@ -149,6 +158,12 @@ public class ClicListener implements MouseListener {
 					if (valCarte == 13) {
 						//TODO Action roi
 					}
+				} else {
+					g.getCurrentTour().ajoutGorgeeAquise(1);
+				}
+				if(g.allDiscovered()) {
+					JOptionPane.showMessageDialog(null, "+10 gorgées. Jackbot !", "Glup glup", JOptionPane.INFORMATION_MESSAGE);
+					g.getCurrentTour().setGorgeesAcquises(10);
 				}
 			} else {
 				JOptionPane.showMessageDialog(null, "Carte déjà retournée. +1 gorgée pour avoir essayé de faire planter le programme. Bâtard.", "Error Boloss 404", JOptionPane.ERROR_MESSAGE);

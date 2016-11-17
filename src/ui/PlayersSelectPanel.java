@@ -75,11 +75,24 @@ public class PlayersSelectPanel extends JPanel {
 				
 				//IF LESS THAN 2 NAMES
 				if(listPlayers.size() < 2) {
-					JOptionPane.showMessageDialog(f, "Entrez au moins deux noms", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(f, "Entrez au moins deux noms.", "Error", JOptionPane.ERROR_MESSAGE);
 					return;
 				}
 				
-				// TODO IF TWO PLAYERS HAVE THE SAME NAME ERROR
+				// IF TWO PLAYERS HAVE THE SAME NAME ERROR
+				boolean flag=false;
+				for (Player player : listPlayers) {
+					for (Player player2 : listPlayers) {
+						if(player.getName().equals(player2.getName())) {
+							flag=true;
+							break;
+						}
+					}
+				}
+				if(flag) {
+					JOptionPane.showMessageDialog(f, "Deux noms sont identiques.", "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
 				
 				
 				//REDIRECT ON NEXT SCREEN
